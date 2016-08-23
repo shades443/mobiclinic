@@ -26,59 +26,133 @@
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon" />
+        <link rel="stylesheet" type="text/css" href="css/index.css"/>
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
         <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
         <title>mobiclinic</title>
     </head>
     <body>
-        <div id="mobiclinic-main">
-        	<div style="overflow: hidden; float: left; height: inherit;">
-        	<div id="app-menu" class="sidebars">
-            	<div style="height: 40%;">
-                </div>
-                <div style="padding: 2px 6px;">
-                <form>
-                <input type="text" />
-                </form>
-                </div>
-                <div id="menulist">
-        		<p class="listitems">My File</p>
-        		<p class="listitems">My Dr.</p>
-        		<p class="listitems">My Hospital</p>
-        		<p class="listitems">Options</p>
-                </div>
-                <div id="logout">
-                <p class="listitems">Log Out</p>
-                </div>
+    	<div id="container">
+    	<!--
+    		Login Page
+    	-->	
+        <div data-role="page" id="login-page">
+        	<div data-role="content" style="margin:auto;width:90%;">
+		        <div style="height:50%; text-align: center;">
+		        	<img src="img/logo_cropped.svg" style="width: 16em; margin-top: 10em;" />
+		        	<p>
+		        		<span style="display: block; padding-bottom: 5px; font-size: 1.4em;">
+		        		Welcome to <span style="font-weight: bold; color: #008080;">mobiclinic</span>
+		        		</span>
+		        		Please login to continue
+		        	</p>
+		        </div>
+		        <div>
+		        <form id="usrloginform" method="post" action="http://www.nectarmedia-ng.com/phpLibs/bin/user_authenticate.php?pfm=mApp">
+		        <div>
+		        <input id="usrname" name="usrname" class="ui-input-text" type="text" placeholder="username" />
+		        </div>
+		        <div>
+		        <input id="usrpw" name="usrpw" type="password" placeholder="password" />
+		        </div>
+		        <div>
+		        	<p style="font-size: 0.9em; text-align: center">
+			    	Forgot password? Click <a href="#" >here</a>
+			    	</p>
+		        </div>
+		        </form>
+		        </div>
+			</div>
+			<div id="defFooter" data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false" data-hide-during-focus="false">
+	        	<div data-role="navbar" id="defNavbar">
+	        		<ul style="border-top: 1px solid #ddd;">
+	            		<li><a data-transition="slide" href="#register-page" style="color: white; text-shadow: none; border-left: 0; background-image: url('./img/bg-overlay-40.png'); background-color: #1a1a1a;">Sign Up</a></li>
+	            		<li><a href="#home-page" style="color: white; text-shadow: none; border-left: 0; background-color: #008080;" value="login" id="usrlogin">Log In</a></li>
+	        		</ul>
+	        	</div>
+	        </div>
+        </div><!--
+        	Register Page
+        --><div data-role="page" id="register-page" class="page">
+			<div id="defHeader" data-role="header" data-position="fixed">
+				<a id="backbtn" data-rel="back" href="#login-page"><img src="img/icon_back.svg" style="display: inline-block; vertical-align: middle; line-height: inherit; height: inherit;" /></a>
+				<span style="display: inline-block;">Registration Form</span>
+			</div>
+			<div id="defContent" data-role="content" style="width: 90%; margin: auto;">
+					<br />
+					<br />
+					<br />
+					<form>
+						<div>
+							<input class="ui-input-text" type="text" placeholder="First Name" />
+						</div>
+						<div>
+							<input type="text" placeholder="Last Name" />
+						</div>
+						<div>
+							<input type="email" placeholder="Email Address" />
+						</div>
+						<div>
+							<input type="text" placeholder="City" />
+						</div>
+						<div style="font-size: 0.75em;">
+							<br />
+							<p style="text-align: center;">
+								By clicking on the "Sign Up" button below,
+								<br />
+								you are agreeing to abide by the rules and regulations
+								of mobiclinic.com and as such are bound to the terms and conditions of baullaz.com
+							</p>
+							<br />
+						</div>
+					</form>
+			</div>
+			<div id="defFooter" data-role="footer" data-position="fixed">
+	        	<div data-role="navbar" id="defNavbar">
+	        		<ul style="border-top: 1px solid #ddd;">
+	            		<li><a style="color: white; text-shadow: none; border-left: 0; background-color: #008080;" value="login" id="usrlogin">Sign Up</a></li>
+	        		</ul>
+	        	</div>
+	        </div>
+		</div><!--
+        	Home Page
+        --><div id="home-page" data-role="page" class="page">
+        	<div id="defHeader" data-role="header" data-position="fixed" data-fullscreen="true" data-tap-toggle="false" data-hide-during-focus="false">
+        		<a id="menubtn" href="#appmenu"><img src="img/icon_menu.svg" /></a>
+        		<span style="display: inline-block; float: right;">
+        		<a id="searchbtn" href="#appmenu"><img src="img/icon_search.svg" /></a>
+				</span>
+        		<div data-role="navbar" id="defNavbar">
+        			<ul>
+            			<li><a href="#">One</a></li>
+            			<li><a href="#">Two</a></li>
+            			<li><a href="#">Three</a></li>
+            			<li><a href="#">Three</a></li>
+        			</ul>
+        		</div>
         	</div>
+        	<div id="defContent" data-role="content" style="padding-top: 110px;">
+        		Hi Baullaz!
         	</div>
-        	<div id="app-content">
-        		<img id="open-menu" style="float: left;" src="img/menu-icon.png"/>
-        		<div style="height: 40%;">
-        			
-        		</div>
-        		<div style="height: 20%;">
-        		<div style="float: left; width: 50%; text-align: center; height: 100%; line-height: 100%; vertical-align: middle;">
-        			SHOPS
-        		</div>
-        		<div style="float: left; width: 50%; height: 100%;">
-        			Hello
-        		</div>
-        		</div>
-        		<div style="height: 20%;">
-        			HI
-        		</div>
-        		<div style="height: 20%;">
-        			
-        		</div>
-        	</div>
+        </div><!--
+        	Side panel
+        --><div id="appmenu" data-role="panel" data-position="left" data-display="reveal">
+       		<div id="sideprofile">
+       			<div>
+       				<img src="" alt=""  />
+       			</div>
+       			<div style="text-align: center; background-color: #008080; position: absolute; bottom: 0px; height: 48px; width: 100%; line-height: 48px;">
+		        	<a href="#login-page" data-rel"back" data-direction="reverse" style="font-size: 12.5px; color: white; text-shadow: none; border-left: 0; font-weight: bold;" value="login" id="usrlogin">Log Out</a>
+		        </div>
+       		</div>
         </div>
         <script type="text/javascript">
-            app.initialize();
+        	app.initialize();
         </script>
+    </div>
     </body>
 </html>

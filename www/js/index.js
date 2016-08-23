@@ -17,113 +17,40 @@
  * under the License.
  */
 var app = {
-    // Application Constructor
-	options: {},
-	appOverlay: {
-		attach: function() {
-			if ($('#overlay').length == 0) {
-				app.parentDiv.append("<div id=\"overlay\"></div>");
-			}
-		},
-		detach: function() {
-			console.log($('#overlay').length);
-			if ($('#overlay').length > 0) {
-				$('#overlay').remove();
-			}
-		}
-	},
-	parentDiv: null,
-    initialize: function() {
-    	/* Set parent DIV element */
-    	app.parentDiv = $("#mobiclinic-main");
-    	app.initParentDiv();
-    	
-    	/* Initialize app options from json file */
-    	$.ajax("options.json", { 
-    		"dataType": "json",
-    		"async": false,
-    		"success": function(data) {
-    		app.options= data;
-    	}
-    	}); 
-    	if (app.options.general.firstrun) {
-    		app.showFirstRun();
-    	}
-    	
+	"initialize": function() {
+		// Bind device events
         this.bindEvents();
-    },
-    bindEvents: function() {
-    	$("#open-menu").click(app.appMenu.openMenu); //app.openMenu
-        // document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // Bind Event Listeners
+        
+		$('div#appmenu').panel();
+	},
+	// Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    /* 
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
     // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+        document.addEventListener("backbutton", app.backButtonDown, false);
     },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    },*/
-    showFirstRun: function() {
-    	/* Check if the first-run container exists */
-    	if ($("#first-run").empty) {
-    		/* Create the first-run container */
-    		app.parentDiv.append("<div id=\"first-run\"></div>");
-    	}
-    },
-    hideSidebars: function() {
-    	$(".sidebars").hide();
-    },
-    initParentDiv: function() {
-    	/* Hide Sidebars */
-    	app.hideSidebars();
-    	app.parentDiv.parent().height($(window).height());
-    	
-    	/* Set menu options here */
-    	if (app.parentDiv.width() > 360) {
-    		$("#app-menu").width("360");
-    	} else {
-    		$("#app-menu").width(app.parentDiv.width() - 56);
-    	}
-    	app.parentDiv.height($(window).height());
-    },
-    appMenu: {
-    	openMenu: function() {
-	    	if (!this.menuActive) {
-	    		app.appOverlay.attach()
-	    		$("#app-menu").show('slide', {easing: "swing", direction: "left"}, 300);
-	    		$("#app-content").animate({width: "-=" + $('#app-menu').width(), queue: 'true'}, 300);
-	    		this.menuActive = true;
-	    	} else {
-	    		$("#app-menu").hide('slide', {direction: "left"}, 300);
-	    		$("#app-content").animate({width: "+=" + $('#app-menu').width(), queue: 'true'}, 300);
-	    		app.appOverlay.detach();
-	    		this.menuActive = false;
-	    	}
-    	/*$("#app-menu").toggle('slide',{queue: false, complete: function() {
-    		if($("#app-menu").css("display") == "none") {
-    			$("#app-content").animate({width: "+=" + $('#app-menu').width()}, 300);
-    		} else {
-    			$("#app-content").animate({width: "-=" + $('#app-menu').width()}, 300);
-    		}
-    	}}, 350);*/
-    	},
-    	menuActive: false
+    backButtonDown: function() {
+		var currentPage = window.location.hash;
+		if (currentPage == "#login-page" || currentPage == '') {
+			navigator.app.exitApp();
+		}
+		if (currentPage == "#register-page" || currentPage == '') {
+			navigator.app.backHistory();
+		}
+		if (currentPage == "#home-page" || currentPage == '') {
+			$('#appmenu').panel("toggle");
+		}
     }
-};
+}
+$(document).on('mobileinit', function() {
+	// Setting #container div as a jqm pageContainer
+	$.mobile.pageContainer = $('#container');
 
+	// Setting default page transition to slide
+	$.mobile.defaultPageTransition = 'slide';
+});

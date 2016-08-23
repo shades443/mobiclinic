@@ -22,6 +22,7 @@
 html {
 	margin:0px;
     padding:0px;
+    overflow: hidden;
 }
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
@@ -32,109 +33,90 @@ body {
     height:inherit;
     margin:0px;
     padding:0px;
-    text-transform:uppercase;
     width:100%;
-    overflow: hidden;
 }
-p {
-	
-}
-/* Portrait layout (default) */
-#mobiclinic-main {
-	padding-top: 1px;
-	margin-top: -1px;
-    height:inherit;
-    width: inherit;
-    overflow: hidden;
-}
-div#app-menu {
-	float: left;
-	padding-top: 1px;
-	margin: 0px;
-    height:inherit;
-    width: 350px;
-    background-color: #e4deed;
-    z-index: 10;
-}
-div#app-content {
-	position: absolute;
-	width: inherit;
-	height: inherit;
-	right: 0px;
-}
-div#overlay {
-	background-image: url('../img/bg-overlay.png');
-	height: inherit;
-}
-div#app-menu div#menulist {
-}
-div#app-menu p.listitems {
-	font-size: 0.7em;
-	font-weight: bold;
-	background-image:url('../img/bg-overlay.png');
+#defHeader.ui-header {
+	position: fixed;
+	width: 100%;
+	background-color: #008080;
+	border:0;
+	padding:0px;
+	min-height: 48px;
+	overflow: hidden;
+	text-shadow:none;
 	color: white;
-	padding: 20px 6px;
-	margin: 0px 0px 0px 0px;
-	border-bottom: 1px solid #333;
 }
-div#app-menu div#logout {
-	position:absolute;
-	bottom: 0px;
-	background-color: #ff0000;
-	width: inherit;
+#defFooter.ui-footer {
+	background-color: transparent;
+	border:0;
+	padding:0px;
+	height: 48px;
+	width: 100%;
+	opacity: 1;
 }
-
-/* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-    #mobiclinic-mai {
-        background-position:left center;
-        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
-        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
-                                      /* offset horizontal: half of image width and text area width */
-    }
+#defNavbar.ui-navbar li {
+	border-bottom: 1px solid #ddd;
 }
-
-h1 {
-    font-size:24px;
-    font-weight:normal;
-    margin:0px;
-    overflow:visible;
-    padding:0px;
-    text-align:center;
+#defNavbar.ui-navbar a {
+	height: 48px;
+	line-height: 48px;
+	padding: 0px;
+	box-shadow: none;
 }
-
-.event {
-    border-radius:4px;
-    -webkit-border-radius:4px;
-    color:#FFFFFF;
-    font-size:12px;
-    margin:0px 30px;
-    padding:2px 0px;
+#appmenu.ui-panel {
+    width: 22em;
 }
-
-.event.listening {
-    background-color:#333333;
-    display:block;
+#appmenu.ui-panel-closed {
+    width: 0;
 }
-
-.event.received {
-    background-color:#4B946A;
-    display:none;
+#appmenu .ui-panel-position-left.ui-panel-display-reveal {
+    left: 0;
 }
-
-@keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
+#appmenu .ui-panel-inner {
+	padding: 0px;
 }
- 
-@-webkit-keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
+#appmenu .ui-panel-content-wrap-position-left.ui-panel-content-wrap-open,
+.ui-panel-dismiss-position-left.ui-panel-dismiss-open {
+    left: 22em;
+    right: -22em;
 }
- 
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
+#appmenu .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal {
+    left: 0;
+    right: 0;
+    -webkit-transform: translate3d(22em,0,0);
+    -moz-transform: translate3d(22em,0,0);
+    transform: translate3d(22em,0,0);
+}
+#home-page .ui-panel-animate.ui-panel-page-content-position-left {
+    left: 0;
+    right: 0;
+    transform: translate3d(22em, 0px, 0px);
+}
+a#backbtn.ui-link, a#menubtn.ui-link, a#searchbtn.ui-link {
+	padding: 0px;
+	margin: 0px;
+	display: inline;
+	background-color: transparent;
+	border: 0;
+	position: relative;
+	top: 0em;
+	left: 0em;
+	box-shadow: none;
+}
+#login-page input, #register-page input {
+	/*background-image: url('../img/bg-overlay-40.png');*/
+	padding: 11px 6px;
+	color: #666;
+	text-shadow:none;
+	border: 1px solid #ddd;
+	box-shadow: none;
+}
+#login-page div.ui-input-text, #register-page div.ui-input-text {
+	background-color: transparent;
+	border: 1px solid #008080;
+	color: #666;
+	box-shadow: none;
+}
+#login-page form .ui-focus, #register-page form .ui-focus {
+	box-shadow: none;
 }

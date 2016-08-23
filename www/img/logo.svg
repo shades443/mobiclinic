@@ -31,7 +31,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="12.537979"
-     inkscape:cx="43.260436"
+     inkscape:cx="31.336664"
      inkscape:cy="26.615204"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -59,7 +59,8 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-1004.3621)">
+     transform="translate(0,-1004.3621)"
+     style="display:inline">
     <path
        id="path12"
        d="m -155.08282,990.74603 c 0,1.269 -1.231,2.25 -2.75,2.25 l -218,0 c -1.519,0 -2.75,-1.23 -2.75,-2.5 l 223.5,0.25 z"
